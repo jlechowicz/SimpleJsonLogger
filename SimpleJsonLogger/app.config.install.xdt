@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"  encoding="utf-8"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <configSections xdt:Transform="InsertIfMissing">
+    <section xdt:Transform="RemoveAll" xdt:Locator="Match(name)" name="simpleJsonLogger"></section>
+    <section xdt:Transform="Insert"
+        name="simpleJsonLogger"
+        type="SimpleJsonLogger.Configuration.SimpleJsonLoggerConfigurationSection, SimpleJsonLogger"
+        allowLocation="true"
+        allowDefinition="Everywhere"
+      />
+  </configSections>
+  <section  xdt:Transform="RemoveAll"></section>
+  <simpleJsonLogger xdt:Transform="Insert" detailLevelToLog="1" fileName="log.json" logId="App" />
+</configuration>

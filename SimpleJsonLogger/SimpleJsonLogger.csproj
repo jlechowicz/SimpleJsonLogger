@@ -57,13 +57,12 @@
     <Compile Include="Util\LogUtility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config.transform" />
+    <None Include="App.config.install.xdt" />
+    <None Include="App.config.uninstall.xdt" />
     <None Include="packages.config" />
     <None Include="SimpleJsonLogger.nuspec" />
-    <None Include="web.config.transform" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="nuget.exe" />
+    <None Include="Web.config.install.xdt" />
+    <None Include="Web.config.uninstall.xdt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
