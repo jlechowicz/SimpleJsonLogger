@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SimpleJsonLogger.Util
 {
-    public class LogUtility
+    internal class LogUtility
     {
         private readonly string _fileName;
         private readonly FileUtility _fileUtility;

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SimpleJsonLogger.Util
 {
-    public class FileUtility
+    internal class FileUtility
     {
         public JsonLog GetLogFile(string filename)
         {
