@@ -13,7 +13,7 @@ namespace SimpleJsonLogger.Tests
         {
             var config = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection();
             Assert.AreEqual("TestLog.json", config.FileName);
-            Assert.AreEqual(DetailLevel.Medium, (DetailLevel)config.DetailLevelToLog);
+            Assert.AreEqual(DetailLevel.Low, (DetailLevel)config.DetailLevelToLog);
             Assert.AreEqual("Test Logger", config.LogId);
             Assert.AreEqual("This is just a typical description.", config.LogDescription);
         }

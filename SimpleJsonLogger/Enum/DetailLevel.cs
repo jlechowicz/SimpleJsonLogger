@@ -9,8 +9,10 @@ namespace SimpleJsonLogger.Enum
     public enum DetailLevel
     {
         None = 0,
-        Low = 1,
-        Medium = 2,
-        High = 3
+        ExceptionsOnly = 1,
+        Low = 2,
+        Medium = 3,
+        High = 4,
+        Diagnostic = 5
     }
 }

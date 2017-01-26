@@ -4,11 +4,7 @@
     <section xdt:Transform="RemoveAll" xdt:Locator="Match(name)" name="simpleJsonLogger"></section>
     <section xdt:Transform="Insert"
         name="simpleJsonLogger"
-        type="SimpleJsonLogger.Configuration.SimpleJsonLoggerConfigurationSection, SimpleJsonLogger"
-        allowLocation="true"
-        allowDefinition="Everywhere"
-      />
+        type="SimpleJsonLogger.Configuration.SimpleJsonLoggerConfigurationSection, SimpleJsonLogger"/>
   </configSections>
-  <section  xdt:Transform="RemoveAll"></section>
-  <simpleJsonLogger xdt:Transform="Insert" detailLevelToLog="1" fileName="log.json" logId="App" />
+  <simpleJsonLogger xdt:Transform="InsertIfMissing" detailLevelToLog="1" fileName="log.json" logId="App" />
 </configuration>

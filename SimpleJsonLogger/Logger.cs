@@ -1,4 +1,5 @@
 ﻿using SimpleJsonLogger.Enum;
+using SimpleJsonLogger.Model;
 using SimpleJsonLogger.Util;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,11 @@ namespace SimpleJsonLogger
         public void Log(string message, DetailLevel level)
         {
             _logUtility.Log(message, level);
+        }
+
+        public JsonLogEntry[] GetEntries()
+        {
+            return _logUtility.Entries;
         }
     }
 }

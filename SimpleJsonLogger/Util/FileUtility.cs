@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,7 +23,11 @@ namespace SimpleJsonLogger.Util
             {
                 throw new ArgumentException("Filename given must have .json extension", nameof(filename));
             }
-            if (!File.Exists(filename))
+
+            var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembl‌​y().Location);
+            var path = $"{directory}\\{filename}";
+
+            if (!File.Exists(path))
             {
                 string logId = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection().LogId;
                 string logDescription = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection().LogDescription;
@@ -31,15 +36,17 @@ namespace SimpleJsonLogger.Util
             }
             else
             {
-                string json = File.ReadAllText(filename);
+                string json = File.ReadAllText(path);
                 return JsonConvert.DeserializeObject<JsonLog>(json);
             }
         }
 
         public void SaveLogFile(JsonLog log, string filename)
         {
+            var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembl‌​y().Location);
+            var path = $"{directory}\\{filename}";
             string json = JsonConvert.SerializeObject(log);
-            File.WriteAllText(filename, json);
+            File.WriteAllText(path, json);
         }
     }
 }

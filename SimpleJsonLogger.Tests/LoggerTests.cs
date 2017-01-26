@@ -25,7 +25,9 @@ namespace SimpleJsonLogger.Tests
 
             var config = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection();
 
-            Assert.IsTrue(File.Exists(config.FileName));
+            var path = Path.GetFullPath(config.FileName);
+
+            Assert.IsTrue(File.Exists(path));
 
             JsonLog log = JsonConvert.DeserializeObject<JsonLog>(File.ReadAllText(config.FileName));
 

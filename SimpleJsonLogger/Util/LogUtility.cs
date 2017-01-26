@@ -14,6 +14,25 @@ namespace SimpleJsonLogger.Util
         private readonly string _fileName;
         private readonly FileUtility _fileUtility;
 
+        public JsonLogEntry[] Entries
+        {
+            get
+            {
+                var logFile = _fileUtility.GetLogFile(_fileName);
+                List<JsonLogEntry> entries;
+                var hasEntries = logFile.LogEntries?.Any();
+                if (hasEntries.GetValueOrDefault(false))
+                {
+                    entries = new List<JsonLogEntry>(logFile.LogEntries);
+                }
+                else
+                {
+                    entries = new List<JsonLogEntry>();
+                }
+                return entries.ToArray();
+            }
+        }
+
         public LogUtility(string fileName = null)
         {
             if (!string.IsNullOrWhiteSpace(fileName))
