@@ -13,9 +13,9 @@ namespace SimpleJsonLogger
     {
         private LogUtility _logUtility;
         private Logger(LogUtility util) { _logUtility = util; }
-        public static Logger GetLogger(string filename = null)
+        public static Logger GetLogger()
         {
-            var logger = new Logger(new LogUtility(filename));
+            var logger = new Logger(new LogUtility());
             return logger;
         }
 
@@ -24,7 +24,7 @@ namespace SimpleJsonLogger
             _logUtility.Log(message, level);
         }
 
-        public JsonLogEntry[] GetEntries()
+        public LogEntry[] GetEntries()
         {
             return _logUtility.Entries;
         }

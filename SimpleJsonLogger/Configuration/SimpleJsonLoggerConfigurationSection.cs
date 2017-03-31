@@ -10,29 +10,16 @@ namespace SimpleJsonLogger.Configuration
 {
     public class SimpleJsonLoggerConfigurationSection : ConfigurationSection
     {
-        [ConfigurationProperty("fileName", DefaultValue = "SimpleJsonLog.json", IsRequired = false)]
-        public string FileName
+        [ConfigurationProperty("logName",  IsRequired = true)]
+        public string LogName
         {
             get
             {
-                return (string)this["fileName"];
+                return (string)this["logName"];
             }
             set
             {
-                this["fileName"] = value;
-            }
-        }
-
-        [ConfigurationProperty("logId",  IsRequired = true)]
-        public string LogId
-        {
-            get
-            {
-                return (string)this["logId"];
-            }
-            set
-            {
-                this["logId"] = value;
+                this["logName"] = value;
             }
         }
 

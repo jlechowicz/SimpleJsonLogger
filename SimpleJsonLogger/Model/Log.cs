@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace SimpleJsonLogger.Model
 {
-    public class JsonLog
+    public class Log
     {
         public string Id { get; set; }
+        public string Name { get; set; }
         public string LogDescription { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
-        public JsonLogEntry[] LogEntries { get; set; }
+        public List<LogEntry> LogEntries { get; set; }
     }
 }

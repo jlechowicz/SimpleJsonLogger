@@ -6,5 +6,5 @@
         name="simpleJsonLogger"
         type="SimpleJsonLogger.Configuration.SimpleJsonLoggerConfigurationSection, SimpleJsonLogger"/>
   </configSections>
-  <simpleJsonLogger xdt:Transform="InsertIfMissing" detailLevelToLog="1" fileName="log.json" logId="App" />
+  <simpleJsonLogger xdt:Transform="InsertIfMissing" detailLevelToLog="1" logName="App" />
 </configuration>
