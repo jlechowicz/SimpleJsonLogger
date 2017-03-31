@@ -26,7 +26,12 @@ namespace SimpleJsonLogger
 
         public LogEntry[] GetEntries()
         {
-            return _logUtility.Entries;
+            return _logUtility.GetLogEntries();
+        }
+
+        public LogEntry[] GetEntries(string logName)
+        {
+            return _logUtility.GetLogEntries(logName);
         }
     }
 }

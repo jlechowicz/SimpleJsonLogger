@@ -12,20 +12,24 @@ namespace SimpleJsonLogger.Util
 {
     internal class LogUtility
     {
-        public LogEntry[] Entries
+        public LogEntry[] GetLogEntries(string logName)
         {
-            get
-            {
-                string logName = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection().LogName;
-                var service = new LogBusinessService();
-                var log = service.GetLog(logName);
-                return log.LogEntries.ToArray();
-            }
+            var service = new LogBusinessService();
+            var log = service.GetLog(logName);
+            return log.LogEntries.ToArray();
+        }
+
+        public LogEntry[] GetLogEntries()
+        {
+            string logName = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection().LogName;
+            var service = new LogBusinessService();
+            var log = service.GetLog(logName);
+            return log.LogEntries.ToArray();
         }
 
         public void Log(string message, DetailLevel level)
         {
-            if(level != DetailLevel.None)
+            if (level != DetailLevel.None)
             {
                 string logDescription = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection().LogDescription;
                 string logName = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection().LogName;
