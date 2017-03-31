@@ -10,7 +10,7 @@ namespace SimpleJsonLogger.DataContext
 {
     public class LogContext : DocumentDbContextBase
     {
-        public LogContext(IDocumentDbLogger logger = null) : base(System.Configuration.ConfigurationManager.AppSettings.Get("LogConnectionKey"), logger)
+        public LogContext(IDocumentDbLogger logger = null) : base(System.Configuration.ConfigurationManager.AppSettings.Get("SimpleJsonLogger.ConnectionName"), logger)
         {
         }
     }
