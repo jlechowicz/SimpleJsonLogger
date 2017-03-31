@@ -15,14 +15,14 @@ namespace SimpleJsonLogger.Services
         {
             using(var ds = new LogDataService(new LogContext()))
             {
-                var log = ds.Query(d => d.Name.ToLower().Equals(logName.ToLower())).SingleOrDefault();
+                var log = ds.Query(d => d.Name.Equals(logName)).AsEnumerable().SingleOrDefault();
                 var model = new Log();
-                if(log != null)
+                model.LogEntries = new List<LogEntry>();
+                if (log != null)
                 {
                     model.Id = log.Id;
                     model.CreatedOn = log.Created;
                     model.LogDescription = log.Description;
-                    model.LogEntries = new List<LogEntry>();
                     model.LogEntries.AddRange(log.Entries.Select(d => new LogEntry { DetailLevel = d.DetailLevel, LoggedOn = d.Created, Message = d.Message, Id = d.Id }));
                 }
                 else
