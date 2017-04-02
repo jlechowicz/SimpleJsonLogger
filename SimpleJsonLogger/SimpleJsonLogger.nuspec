@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SimpleJsonLogger</id>
-    <version>1.2.3</version>
+    <version>1.2.5</version>
     <authors>jlechowicz</authors>
     <owners>jlechowicz</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -17,6 +17,7 @@
   </metadata>
   <files>
     <file src="bin\Release\SimpleJsonLogger.dll" target="lib\SimpleJsonLogger.dll"></file>
+    <file src="bin\Debug\SimpleJsonLogger.pdb" target="lib\SimpleJsonLogger.pdb"></file>
     <file src="App.config.install.xdt" target="content\App.config.install.xdt"></file>
     <file src="App.config.uninstall.xdt" target="content\App.config.uninstall.xdt"></file>
     <file src="Web.config.install.xdt" target="content\Web.config.install.xdt"></file>

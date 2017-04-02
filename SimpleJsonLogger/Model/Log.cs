@@ -13,5 +13,6 @@ namespace SimpleJsonLogger.Model
         public string LogDescription { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
         public List<LogEntry> LogEntries { get; set; }
+        public DateTimeOffset? LastModified { get; internal set; }
     }
 }

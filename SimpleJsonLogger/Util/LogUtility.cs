@@ -31,9 +31,10 @@ namespace SimpleJsonLogger.Util
         {
             if (level != DetailLevel.None)
             {
-                string logDescription = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection().LogDescription;
-                string logName = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection().LogName;
-                int configurationLevel = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection().DetailLevelToLog;
+                var config = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection();
+                string logDescription = config.LogDescription;
+                string logName = config.LogName;
+                int configurationLevel = config.DetailLevelToLog;
 
                 var service = new LogBusinessService();
                 var log = service.GetLog(logName);
@@ -42,7 +43,7 @@ namespace SimpleJsonLogger.Util
 
                 if (configurationLevel >= (int)level)
                 {
-                    log.LogEntries.Add(new LogEntry { DetailLevel = (int)level, Id = new Guid().ToString(), Message = message, LoggedOn = DateTimeOffset.UtcNow });
+                    log.LogEntries.Add(new LogEntry { DetailLevel = (int)level, Id = Guid.NewGuid().ToString(), Message = message, LoggedOn = DateTimeOffset.UtcNow });
                 }
 
                 service.SaveLog(log);

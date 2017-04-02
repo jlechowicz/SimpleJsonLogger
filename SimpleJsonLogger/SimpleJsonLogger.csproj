@@ -75,6 +75,7 @@
     <None Include="app.config" />
     <None Include="App.config.install.xdt" />
     <None Include="App.config.uninstall.xdt" />
+    <None Include="BuildNugetPackage.bat" />
     <None Include="packages.config" />
     <None Include="SimpleJsonLogger.nuspec" />
     <None Include="Web.config.install.xdt" />

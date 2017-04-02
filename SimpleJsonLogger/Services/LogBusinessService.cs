@@ -23,6 +23,8 @@ namespace SimpleJsonLogger.Services
                     model.Id = log.Id;
                     model.CreatedOn = log.Created;
                     model.LogDescription = log.Description;
+                    model.Name = log.Name;
+                    model.LastModified = log.LastModified;
                     model.LogEntries.AddRange(log.Entries.Select(d => new LogEntry { DetailLevel = d.DetailLevel, LoggedOn = d.Created, Message = d.Message, Id = d.Id }));
                 }
                 else
@@ -43,6 +45,7 @@ namespace SimpleJsonLogger.Services
                     Created = log.CreatedOn,
                     Description = log.LogDescription,
                     Name = log.Name,
+                    LastModified = log.LastModified,
                     Entries = log.LogEntries.Select(m => new LogEntryDocument { Id = m.Id, Created = m.LoggedOn, DetailLevel = m.DetailLevel, Message = m.Message }).ToArray()
                 };
                 if (string.IsNullOrWhiteSpace(log.Id))
@@ -52,6 +55,7 @@ namespace SimpleJsonLogger.Services
                 }
                 else
                 {
+                    document.Id = log.Id;
                     ds.Update(document);
                 }
             }
