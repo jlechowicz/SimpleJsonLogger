@@ -62,7 +62,7 @@ namespace SimpleJsonLogger.Services
             {
                 if (disposing)
                 {
-                    _context.Dispose();
+                    
                 }
 
                 disposedValue = true;

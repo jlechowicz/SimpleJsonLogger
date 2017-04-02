@@ -2,21 +2,21 @@
 <package >
   <metadata>
     <id>SimpleJsonLogger</id>
-    <version>1.2.6</version>
+    <version>1.2.7</version>
     <authors>jlechowicz</authors>
     <owners>jlechowicz</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A simple logging tool that writes logs in the json format.</description>
-    <releaseNotes>Converted to use DocumentDb for storing logs</releaseNotes>
+    <releaseNotes>DEBUG VERSION - Converted to use DocumentDb for storing logs</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="10.0.1" />
-      <dependency id="DocumentDbClient" version="1.1.0" />
+      <dependency id="DocumentDbClient" version="1.1.3" />
       <dependency id="Microsoft.Azure.DocumentDB" version="1.13.1" />
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\SimpleJsonLogger.dll" target="lib\SimpleJsonLogger.dll"></file>
+    <file src="bin\Debug\SimpleJsonLogger.dll" target="lib\SimpleJsonLogger.dll"></file>
     <file src="bin\Debug\SimpleJsonLogger.pdb" target="lib\SimpleJsonLogger.pdb"></file>
     <file src="App.config.install.xdt" target="content\App.config.install.xdt"></file>
     <file src="App.config.uninstall.xdt" target="content\App.config.uninstall.xdt"></file>
