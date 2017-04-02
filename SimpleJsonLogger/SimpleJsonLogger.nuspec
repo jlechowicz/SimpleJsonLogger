@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SimpleJsonLogger</id>
-    <version>1.2.5</version>
+    <version>1.2.6</version>
     <authors>jlechowicz</authors>
     <owners>jlechowicz</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
