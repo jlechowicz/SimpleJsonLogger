@@ -16,7 +16,7 @@ namespace SimpleJsonLogger.Util
         {
             var service = new LogBusinessService();
             var log = service.GetLog(logName);
-            return log.LogEntries.Value.ToArray();
+            return log.LogEntries.ToArray();
         }
 
         public LogEntry[] GetLogEntries()
@@ -24,7 +24,7 @@ namespace SimpleJsonLogger.Util
             string logName = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection().LogName;
             var service = new LogBusinessService();
             var log = service.GetLog(logName);
-            return log.LogEntries.Value.ToArray();
+            return log.LogEntries.ToArray();
         }
 
         public void Log(string message, DetailLevel level)
@@ -43,7 +43,7 @@ namespace SimpleJsonLogger.Util
 
                 if (configurationLevel >= (int)level)
                 {
-                    log.LogEntries.Value.Add(new LogEntry { DetailLevel = (int)level, Id = Guid.NewGuid().ToString(), Message = message, LoggedOn = DateTimeOffset.UtcNow });
+                    log.LogEntries.Add(new LogEntry { DetailLevel = (int)level, Id = Guid.NewGuid().ToString(), Message = message, LoggedOn = DateTimeOffset.UtcNow });
                     service.SaveLog(log);
                 }
             }
