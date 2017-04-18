@@ -19,9 +19,9 @@ namespace SimpleJsonLogger
             return logger;
         }
 
-        public void Log(string message, DetailLevel level)
+        public async Task Log(string message, DetailLevel level)
         {
-            _logUtility.Log(message, level);
+            await Task.Run(() => _logUtility.Log(message, level));
         }
 
         public LogEntry[] GetEntries()

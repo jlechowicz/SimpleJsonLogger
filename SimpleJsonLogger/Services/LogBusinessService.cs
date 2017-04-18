@@ -17,7 +17,9 @@ namespace SimpleJsonLogger.Services
             {
                 var log = ds.Query(d => d.Name.Equals(logName)).AsEnumerable().SingleOrDefault();
                 var model = new Log();
-                model.LogEntries = new List<LogEntry>();
+                model.LogEntries = new Lazy<List<LogEntry>>(() => {
+                    return ds.Query(d => d.Name.Equals(logName))?.AsEnumerable()?.SingleOrDefault()?.Entries?.Select(d => new LogEntry { DetailLevel = d.DetailLevel, LoggedOn = d.Created, Message = d.Message, Id = d.Id })?.ToList();
+                });
                 if (log != null)
                 {
                     model.Id = log.Id;
@@ -25,7 +27,6 @@ namespace SimpleJsonLogger.Services
                     model.LogDescription = log.Description;
                     model.Name = log.Name;
                     model.LastModified = log.LastModified;
-                    model.LogEntries.AddRange(log.Entries.Select(d => new LogEntry { DetailLevel = d.DetailLevel, LoggedOn = d.Created, Message = d.Message, Id = d.Id }));
                 }
                 else
                 {
@@ -46,7 +47,7 @@ namespace SimpleJsonLogger.Services
                     Description = log.LogDescription,
                     Name = log.Name,
                     LastModified = log.LastModified,
-                    Entries = log.LogEntries.Select(m => new LogEntryDocument { Id = m.Id, Created = m.LoggedOn, DetailLevel = m.DetailLevel, Message = m.Message }).ToArray()
+                    Entries = log.LogEntries.Value.Select(m => new LogEntryDocument { Id = m.Id, Created = m.LoggedOn, DetailLevel = m.DetailLevel, Message = m.Message }).ToArray()
                 };
                 if (string.IsNullOrWhiteSpace(log.Id))
                 {
