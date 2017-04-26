@@ -8,7 +8,7 @@ using DocumentDbClient.Context;
 
 namespace SimpleJsonLogger.Services
 {
-    internal class LogDataService : DataServiceBase<LogDocument>
+    internal class LogDataService : DataServiceBase<LogDocument>, ILogDataService<LogDocument>
     {
         public LogDataService(IDocumentDbContext context) : base(context)
         {

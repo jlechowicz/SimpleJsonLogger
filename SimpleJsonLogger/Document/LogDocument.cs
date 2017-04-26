@@ -10,13 +10,15 @@ using DocumentDbClient.Utilities;
 namespace SimpleJsonLogger.Document
 {
     [DocumentDbDocumentCollectionData("LogDocumentCollection")]
-    internal class LogDocument : DocumentBase
+    public class LogDocument : DocumentBase
     {
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
-        [JsonProperty("entries")]
-        public LogEntryDocument[] Entries { get; set; }
+        [JsonProperty("message")]
+        public string Message { get; set; }
+        [JsonProperty("detailLevel")]
+        public int DetailLevel { get; set; }
     }
 }

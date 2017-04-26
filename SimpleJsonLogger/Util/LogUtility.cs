@@ -7,24 +7,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Practices.Unity;
 
 namespace SimpleJsonLogger.Util
 {
     internal class LogUtility
     {
-        public LogEntry[] GetLogEntries(string logName)
+        public Log[] GetLogEntries(string logName)
         {
-            var service = new LogBusinessService();
-            var log = service.GetLog(logName);
-            return log.LogEntries.ToArray();
+            var service = Unity.Instance.Resolve<ILogBusinessService>();
+            var logs = service.GetLog(logName);
+            return logs;
         }
 
-        public LogEntry[] GetLogEntries()
+        public Log[] GetLogEntries()
         {
             string logName = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection().LogName;
-            var service = new LogBusinessService();
-            var log = service.GetLog(logName);
-            return log.LogEntries.ToArray();
+            var service = Unity.Instance.Resolve<ILogBusinessService>();
+            var logs = service.GetLog(logName);
+            return logs;
         }
 
         public void Log(string message, DetailLevel level)
@@ -36,14 +37,17 @@ namespace SimpleJsonLogger.Util
                 string logName = config.LogName;
                 int configurationLevel = config.DetailLevelToLog;
 
-                var service = new LogBusinessService();
-                var log = service.GetLog(logName);
-
-                log.LogDescription = logDescription;
+                var service = Unity.Instance.Resolve<ILogBusinessService>();
+                
 
                 if (configurationLevel >= (int)level)
                 {
-                    log.LogEntries.Add(new LogEntry { DetailLevel = (int)level, Id = Guid.NewGuid().ToString(), Message = message, LoggedOn = DateTimeOffset.UtcNow });
+                    var log = new Log();
+                    log.CreatedOn = DateTimeOffset.UtcNow;
+                    log.DetailLevel = (int)level;
+                    log.LogDescription = logDescription;
+                    log.Message = message;
+                    log.Name = logName;
                     service.SaveLog(log);
                 }
             }
