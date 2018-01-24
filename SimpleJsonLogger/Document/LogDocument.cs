@@ -9,7 +9,6 @@ using DocumentDbClient.Utilities;
 
 namespace SimpleJsonLogger.Document
 {
-    [DocumentDbDocumentCollectionData("LogDocumentCollection")]
     public class LogDocument : DocumentBase
     {
         [JsonProperty("name")]

@@ -20,37 +20,37 @@ namespace SimpleJsonLogger.Services
 
         public IQueryable<TDocument> All()
         {
-            return _context.GetDocumentCollection<TDocument>().All().AsQueryable();
+            return _context.GetDocumentCollection().All<TDocument>().AsQueryable();
         }
 
         public TDocument Create(TDocument document)
         {
-            return _context.GetDocumentCollection<TDocument>().Add(document);
+            return _context.GetDocumentCollection().Add<TDocument>(document);
         }
 
         public TDocument Find(string id)
         {
-            return _context.GetDocumentCollection<TDocument>().Find(id);
+            return _context.GetDocumentCollection().Find<TDocument>(id);
         }
 
         public IQueryable<TDocument> Query(Expression<Func<TDocument, bool>> query)
         {
-            return _context.GetDocumentCollection<TDocument>().Query(query);
+            return _context.GetDocumentCollection().Query<TDocument>(query);
         }
 
         public IQueryable<TDocument> Query(string query)
         {
-            return _context.GetDocumentCollection<TDocument>().Query(query);
+            return _context.GetDocumentCollection().Query<TDocument>(query);
         }
 
         public void Remove(TDocument document)
         {
-            _context.GetDocumentCollection<TDocument>().Remove(document);
+            _context.GetDocumentCollection().Remove(document);
         }
 
         public TDocument Update(TDocument document)
         {
-            return _context.GetDocumentCollection<TDocument>().Update(document);
+            return _context.GetDocumentCollection().Update(document);
         }
 
         #region IDisposable Support
