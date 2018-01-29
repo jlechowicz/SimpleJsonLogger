@@ -4,7 +4,7 @@ namespace SimpleJsonLogger.Services
 {
     internal interface ILogBusinessService
     {
-        Log[] GetLog(string logName);
+        Log GetLog(string logName);
         void SaveLog(Log log);
     }
 }

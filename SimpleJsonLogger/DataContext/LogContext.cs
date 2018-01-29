@@ -12,6 +12,14 @@ namespace SimpleJsonLogger.DataContext
     {
         public LogContext(IDocumentDbLogger logger = null) : base(System.Configuration.ConfigurationManager.AppSettings.Get("SimpleJsonLogger.ConnectionName"), logger)
         {
+            if (!DoesDatabaseExist())
+            {
+                CreateDatabase();
+            }
+            if (!DoesDocumentCollectionExist())
+            {
+                CreateDocumentCollection();
+            }
         }
     }
 }

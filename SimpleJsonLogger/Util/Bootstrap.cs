@@ -18,6 +18,7 @@ namespace SimpleJsonLogger.Util
             Unity.Instance.RegisterType<ILogDataService<LogDocument>, LogDataService>();
             Unity.Instance.RegisterInstance<IDocumentDbContext>(new LogContext());
             Unity.Instance.RegisterType<ILogBusinessService, LogBusinessService>();
+
         }
     }
 }

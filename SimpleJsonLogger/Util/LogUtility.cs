@@ -13,19 +13,29 @@ namespace SimpleJsonLogger.Util
 {
     internal class LogUtility
     {
-        public Log[] GetLogEntries(string logName)
+        public Log GetLogEntries(string logName)
         {
             var service = Unity.Instance.Resolve<ILogBusinessService>();
             var logs = service.GetLog(logName);
             return logs;
         }
 
-        public Log[] GetLogEntries()
+        public Log GetLogEntries()
         {
-            string logName = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection().LogName;
+            var config = ConfigurationSectionFactory.GetSimpleJsonLoggerConfigurationSection();
+            string logName = config.LogName;
             var service = Unity.Instance.Resolve<ILogBusinessService>();
-            var logs = service.GetLog(logName);
-            return logs;
+            var log = service.GetLog(logName);
+            if (log == null)
+            {
+                log = new Log()
+                {
+                    LogDescription = config.LogDescription,
+                    Name = logName,
+                    CreatedOn = DateTimeOffset.UtcNow
+                };
+            }
+            return log;
         }
 
         public void Log(string message, DetailLevel level)
@@ -42,12 +52,25 @@ namespace SimpleJsonLogger.Util
 
                 if (configurationLevel >= (int)level)
                 {
-                    var log = new Log();
-                    log.CreatedOn = DateTimeOffset.UtcNow;
-                    log.DetailLevel = (int)level;
-                    log.LogDescription = logDescription;
-                    log.Message = message;
-                    log.Name = logName;
+                    var timestamp = DateTimeOffset.UtcNow;
+
+                    var log = GetLogEntries();
+
+                    if(log.Messages != null)
+                    {
+                        var tempList = new List<Log.LogMessage>(log.Messages)
+                        {
+                            new Log.LogMessage { Data = message, TimeStamp = timestamp, DetailLevel = (int)level }
+                        };
+                        log.Messages = tempList.ToArray();
+                    }
+                    else
+                    {
+                        log.Messages = new Log.LogMessage[] {
+                            new Log.LogMessage { Data = message, TimeStamp = timestamp, DetailLevel = (int)level }
+                        };
+                    }
+                    
                     service.SaveLog(log);
                 }
             }

@@ -24,12 +24,12 @@ namespace SimpleJsonLogger
             await Task.Run(() => _logUtility.Log(message, level));
         }
 
-        public Log[] GetEntries()
+        public Log GetLog()
         {
             return _logUtility.GetLogEntries();
         }
 
-        public Log[] GetEntries(string logName)
+        public Log GetEntries(string logName)
         {
             return _logUtility.GetLogEntries(logName);
         }
